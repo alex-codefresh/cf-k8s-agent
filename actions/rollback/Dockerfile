@@ -8,7 +8,7 @@ ENV XDG_CONFIG_HOME=/root/.helm
 ARG HELM_VERSION=3.0.3
 
 RUN echo "HELM_VERSION is set to: $HELM_VERSION" && mkdir /temp
-RUN export ARCH=$(if [[ "$(uname -m)" == "aarch64" ]]; then echo "arm64"; else echo "amd64"; fi) && \ 
+RUN export ARCH=$(if [[ "$(uname -m)" = "aarch64" ]; then echo "arm64"; else echo "amd64"; fi) && \ 
     curl -L "https://get.helm.sh/helm-v$HELM_VERSION-linux-${ARCH}.tar.gz" -o helm.tar.gz \
     && tar -zxvf helm.tar.gz \
     && mv ./linux-${ARCH}/helm /usr/local/bin/helm \
